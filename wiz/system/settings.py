@@ -11,9 +11,9 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'mysql'           # 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
-DATABASE_NAME = 'bchruszc_rook'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'bchruszc_rook'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'fobel_rules'         # Not used with sqlite3.
+DATABASE_NAME = 'bchruszc_wiz'             # Or path to database file if using sqlite3.
+DATABASE_USER = 'bchruszc_wiz'             # Not used with sqlite3.
+DATABASE_PASSWORD = 'bradrules'         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
@@ -34,21 +34,21 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/bchruszc/webapps/rook/myproject/media'
+MEDIA_ROOT = '/home/bchruszc/webapps/wiz/myproject/media'
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
-MEDIA_URL = '/rook_media/'
+MEDIA_URL = '/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+ADMIN_MEDIA_PREFIX = 'http://rook.chruszcz.ca/media/'
 #ADMIN_MEDIA_PREFIX = '/home/brad/html/easy_media/'
 #ADMIN_MEDIA_PREFIX = '/media'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'q8uj!1+nc5j=xmzl4d67aub&7$bqr%e!p+on3(#x-r4c3v9#em'
+SECRET_KEY = '$m4-tzobk873lln$8=rycosl79pbd6=xxtev=k^pkh&uoe02(n'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -70,7 +70,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/bchruszc/webapps/rook/myproject/rook/templates/',
+    '/home/bchruszc/webapps/wiz/myproject/wiz/templates/',
 )
 
 #CACHE_BACKEND = "db://pool_cache"
