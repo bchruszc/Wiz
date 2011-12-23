@@ -6,7 +6,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     #'django.contrib.auth.views.login',
     (r'^$', 'system.scoreboard.views.leaderboard'),
-    (r'^admin/(.*)', admin.site.root),
+    url(r'^admin/', include(admin.site.urls)),
     (r'^leaderboard/$', 'system.scoreboard.views.leaderboard'),
     (r'^leaderboard/(?P<player_id>\d+)/$', 'system.scoreboard.views.players'),
     (r'^entry/$', 'system.scoreboard.views.entry'),
