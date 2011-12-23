@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block extratitle %}
+Graphs
+{% endblock %}
+
+{% block extrascript %}
+<script type="text/javascript" src="/rook_media/scoreboard/js/swfobject.js"></script>
+<script type="text/javascript" src="/rook_media/scoreboard/js/accessibleUISlider.jQuery.js"></script>
+<script type="text/javascript" src="/rook_media/scoreboard/js/ui/ui.slider.js"></script>
+<link rel="stylesheet" type="text/css" href="/rook_media/scoreboard/css/jquery-ui-slider-additions.css"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	// Add something here to default select the right things
+	$('select#startDate, select#endDate').accessibleUISlider({width: 500});
+});
+</script>
+
+<script type="text/javascript">
+	swfobject.embedSWF(
+	  "/rook_media/scoreboard/swf/open-flash-chart.swf", "my_chart", "685", "300",
+	  "9.0.0", "expressInstall.swf",
+	  {"data-file":"/graph/data/{{ graph_type }}/{{ start_date }}/{{ end_date }}"}
+	  );
+	
+	function trimDate(dateStr){
+		dashLoc = dateStr.indexOf('-')
+		while(dashLoc >= 0){
+			ds1 = dateStr.substring(0, dashLoc);
+			ds2 = dateStr.substring(dashLoc + 1, dateStr.length);
+			dateStr = ds1 + ds2;
+			//alert(dateStr + " " + ds1 + " " + ds2);
+			dashLoc = dateStr.indexOf('-')
+		}
+		return dateStr
+	}
+	
+	function reloadChart(){
+		// Get the values of the sliders, and reload the page
+		startStr = trimDate($('#startDate').attr('value'));
+		endStr = trimDate($('#endDate').attr('value'));
+		str = "/graph/{{ graph_type }}/" + startStr + "/" + endStr + "/";
+		//alert(str);
+		window.location = str;
+	}
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+{% load graph_utils %}
+
+<div id="my_chart"></div>
+
+<div>
+<label for="startDate">From:</label>
+<select name="startDate" id="startDate">
+	{% start_dates %}
+</select>
+
+<label for="endDate">To:</label>
+<select name="endDate" id="endDate">
+	{% end_dates %}
+</select>
+<div id="switcher"></div>
+<br>
+<br>
+<button onClick="reloadChart()">Reload</button>
+
+</div>
+<!-- 
+{% if player_id %}
+{% endif %}
+<h2>Rank</h2>
+<ul>
+{% for p in players %}
+<li><a href="/graph/rank/{{ p.id }}/">{{ p }}</a></li>
+{% endfor %}
+</ul>
+<h2>Points</h2>
+
+<ul>
+{% for p in players %}
+<li><a href="/graph/points/{{ p.id }}/">{{ p }}</a></li>
+{% endfor %}
+</ul>-->
+{% endblock %}

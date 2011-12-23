@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block extrascript %}
+<script>
+$(document).ready(function(){
+  $("#leader_tabs > ul").tabs();
+  {% for title, short_name, table_info in player_infos %}
+  $("#main_table_{{ short_name}}").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+  {% endfor %}
+});
+</script>
+{% endblock %}
+
+{% block extratitle %}
+Leaderboard
+{% endblock %}
+
+{% block content %}
+
+<div id="leader_tabs" class="">
+	<ul>
+	{% for title, short_name, table_info in player_infos %}
+		<li><a href="#fragment-{{ forloop.counter }}"><span>{{ short_name }}</span></a></li>
+	{% endfor %}
+	</ul>
+	{% for title, short_name, table_info in player_infos %}
+	<div id="fragment-{{ forloop.counter }}" class="post">
+		<div class="header">
+			<a name="{{ short_name }}"></a>
+			<h3>{{ title }}</h3>
+		</div>
+		<div class="div_center" name="table_{{short_name}}">
+			<table class="main_table" id="main_table_{{short_name}}">
+				<thead>
+				<tr>
+					<th>#</th>
+					<th>Player</th>
+					<th>Games</th>
+					<th>Wins</th>
+					<th>Win %</th>
+					<th>Rating</th>
+				</tr>
+				</thead>
+				<tbody>
+				{% for p in table_info %}
+				<tr onclick="window.location='/leaderboard/{{ p.player.id }}/';">
+					<td>{{ forloop.counter }}</td>
+					<td>{{ p.player.first_name }}</td>
+					<td class="align-center">{{ p.games }}</td>
+					<td class="align-center">{{ p.wins }}</td>
+					<td class="align-right">{{ p.win_percentage|floatformat:1 }}%</td>
+					<td class="align-center">{{ p.rating|floatformat:0 }}</td>
+				</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+{% endblock %}
+
+{% block secondarycontent %}
+	<h3>Recent Winners</h3>
+	<div class="content">
+		<ul class="linklist">
+			{% for winner in recent_winners %}
+			<li {% if forloop.first %}class="first"{% endif %}><a href="/game/{{winner.game.id}}/">{{ winner.winner.first_name }} ({{ winner.points }}), {{ winner.game.date }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

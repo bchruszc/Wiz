@@ -1,0 +1,21 @@
+from django.conf.urls.defaults import patterns
+
+urlpatterns = patterns('',
+    #'django.contrib.auth.views.login',
+    #(r'^$', 'system.pool.views.standings'),
+    #(r'^standings/$', 'system.pool.views.standings'),
+    #(r'^standings/chase/$', 'system.pool.views.standings'),
+    #(r'^standings/points/$', 'system.pool.views.standings.standings_points'),
+    #(r'^team/(?P<team_id>\d+)/$', 'system.pool.views.team'),
+    #(r'^team/(?P<team_id>\d+)/(?P<page>\d+)/$', 'system.pool.views.team'),
+    #(r'^teams/$', 'system.pool.views.team'),
+    #(r'^drivers/$', 'system.pool.views.drivers'),
+    #(r'^drivers/(?P<driver_id>\d+)/$', 'system.pool.views.team'),
+    #(r'^trades/$', 'system.pool.views.trades'),
+    #(r'^rules/$', 'system.pool.views.rules'),
+    #(r'^values/$', 'system.pool.views.values'),
+    #(r'^grid/$', 'system.pool.views.grid'),
+    #(r'^(?P<patient_id>\d+)/$','easy.medical.views.record'),
+    #(r'^(?P<patient_id>\d+)/note/(?P<note_id>\d+)/$','easy.medical.views.note'),
+    #(r'^(?P<patient_id>\d+)/create_note/$','easy.medical.views.create_note'),
+)

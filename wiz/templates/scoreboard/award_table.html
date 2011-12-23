@@ -1,0 +1,15 @@
+			<table class="main_table" >
+				{% for v in award.values %}
+				<tr 
+				{% if v.2 %}
+					onclick="window.location='/game/{{v.2.id}}/';"
+				{% else %}
+					onclick="window.location='/leaderboard/{{v.0.id}}/';"
+				{% endif %}>
+					<td>{{ forloop.counter }}</td>
+					<td>{{ v.0 }}</td>
+					<td class="align-center">{{ v.1|floatformat:award.decimals }}</td>
+					{% if v.2 %}<td class="align-center">{{ v.2 }}</td>{% endif %}
+				</tr>
+				{% endfor %}
+			</table>

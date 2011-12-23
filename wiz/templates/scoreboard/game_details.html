@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block extratitle %}
+Game History
+{% endblock %}
+
+{% block content %}
+{% load game_table %}
+
+<div class="post">
+	<div class="content">
+	<div class="header">
+		<h3>Game #{{ game.id }} ({{ game.date }})</h3>
+	</div>
+	<table class="main_table">
+	<thead>
+	<tr>
+	<th>#</th>
+	<th width=100>Name</th>
+	<th>Points</th>
+	<th>Star</th>
+	<th>Rating</th>
+	</tr>
+	</thead>
+	{% game_table game %}
+	</table>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% for player in players %}
+<tr onclick="window.location='/leaderboard/{{ player.player.id }}/';">
+	<td>{{ player.rank }}</td>
+	<td>{{ player.player }}</td>
+	<td class="align-right">{{ player.points }}</td>
+	<td class="align-center">{{ player.star }}</td>
+	<td class="align-center">{{ player.rating_change }}</td>
+	<!-- <td class="align-center">{{ player.expected|floatformat:3 }}</td>
+	<td class="align-center">{{ player.actual|floatformat:3 }}</td> -->
+</tr>
+{% endfor %}

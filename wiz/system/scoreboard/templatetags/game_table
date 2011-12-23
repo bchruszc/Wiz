@@ -1,0 +1,16 @@
+from django.template import Library
+
+register = Library()
+
+def game_table(game):
+    players = []
+    
+    row = ['1', 'B','800','*']
+    row2 = ['2', 'M','400','']
+
+    players.append(row)
+    players.append(row2)
+
+    return players
+    
+register.filter('game_table', game_table)

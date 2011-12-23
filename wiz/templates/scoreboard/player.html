@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block extratitle %}
+{{ player }}
+{% endblock %}
+
+{% block content %}
+
+{% load player_utils %}
+<br>
+
+<h1>{{ player.first_name }}{% if player.last_name %} {{ player.last_name }}{% endif %}</h1>
+<br>
+<div class="post">
+	<div class="header">
+		<h3>Ranks</h3>
+	</div>
+	<table class="main_table">
+		<thead>
+			<th>&nbsp</th>
+		{% for rank in rank_range %}
+			<th width=30>{{ rank }}</th>
+		{% endfor %}
+		<th width=30>Total</th>
+		</thead>
+		<tbody>
+	
+		{% for num_players in player_range %}
+		<tr>
+			<th>{{ num_players }} Players</th>
+			{% for rank in rank_range %}
+			<td>{% times_ranked player rank num_players %}</td>
+			{% endfor %}
+			<td>{% times_ranked player 0 num_players %}</td>
+		</tr>	
+		{% endfor %}
+		<tr>
+			<th>Total</th>
+			{% for rank in rank_range %}
+			<td>{% times_ranked player rank 0 %}</td>
+			{% endfor %}
+			<td>{% times_ranked player 0 0 %}</td>
+		</tr>
+		</body>
+	</table>
+</div>
+
+<div class="post">
+	<div class="header">
+		<h3>Scores</h3>
+	</div>
+	<table class="main_table">
+		<thead>
+		<tr>
+			<th>Players</th>
+			<th>Low</th>
+			<th>High</th>
+		</tr>
+		</thead>
+		
+		<tbody>
+		{% for num_players in player_range %}
+		<tr>
+			<td>{{ num_players }}</td>
+			<td>{% low_score player num_players %}</td>
+			<td>{% high_score player num_players %}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+<div class="post">
+	<div class="header">
+		<h3>Recent Games</h3>
+	</div>
+	<div class="content">
+		<ul>
+		{% for pig in recent_games %}
+			<li {% if forloop.first %}class="first"{% endif %}><a href="/game/{{pig.game.id}}/">{{pig.game.date}}: {{pig.player}} ranked {{ pig.rank }}/{{pig.game.num_players}} with {{ pig.total_points_manual}} points</a></li>
+		{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endblock %}
+
+{% block secondarycontent %}
+	<h3>Other Players</h3>
+	<div class="content">
+		<ul class="linklist">
+			{% for p in players %}
+				<li {% if forloop.first %}class="first"{% endif %}><a href="/leaderboard/{{p.id}}/">{{ p.first_name }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

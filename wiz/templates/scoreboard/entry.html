@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block extratitle %}
+New Game Entry
+{% endblock %}
+
+{% block extrascript %}
+<script>
+$(document).ready(function(){
+	$("#id_date").datepicker({
+	    dateFormat: $.datepicker.ISO_8601, 
+	    showAnim: "fadeIn", 
+	    showOn: "both", 
+	    buttonImage: "/rook_media/scoreboard/img/calendar.gif", 
+	    buttonImageOnly: true });
+});
+</script>
+{% endblock %}
+<script>
+{% block content %}
+
+{% for e in errors %}
+<p>Error: {{ e }}</p>
+{% endfor %}
+
+<form action="/entry/" method="POST">
+	<table class="main_table">
+		<thead>
+			<tr>
+				<th colspan=2><label for="id_date">Game Date:</label></th><td colspan=2>{{ game_form.date.errors}}  {{ game_form.date }} </td>
+			</tr>
+			<tr>
+				<th>Seat</th>
+				<th>Player</th>
+				<th>Score</th>
+				<th>Called</th>
+			</tr>
+		</thead>
+		<tbody>
+		<tr>
+		{{ pig_formset.management_form }} 
+		{% for form in pig_formset.forms %}
+		<th>{{ forloop.counter }}</th>
+			{% for field in form %}
+				<td>{{ field }}</td>
+			{% endfor %}
+			{% if form.errors %}
+				<td>{{ form.errors }}</td>
+			{% endif %}
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	</div>
+<input type="submit" value="Submit" />
+</form>
+
+
+{% endblock %}

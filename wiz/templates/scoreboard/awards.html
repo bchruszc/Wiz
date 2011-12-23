@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block extratitle %}
+Awards
+{% endblock %}
+
+{% block extrascript %}
+<script>
+  $(document).ready(function(){
+  	{% for award in awards %}
+    $("#award_header_{{ forloop.counter }}").click(function () {
+      $("#award_table_{{forloop.counter}}").toggle();
+    });
+	{% endfor %}
+  });
+
+</script>
+{% endblock %}
+
+{% block content %}
+{% load award_table %}
+<div>
+	{% for award in awards %}
+	<div id="award-{{ forloop.counter }}" class="post">
+		<div class="header" id="award_header_{{ forloop.counter }}">
+			<a name="award_{{ forloop.counter }}"></a>
+			<h3>{{ award.name }}{% if not award.is_streak %}: {{ award.values.0.0 }} ({{ award.values.0.1|floatformat:award.decimals }}){% endif %}</h3>
+		</div>
+
+ 
+		<div id="award_table_{{forloop.counter}}" {% if not award.is_streak %}style="display: none;"{% endif %}>
+			{% if not award.is_streak %}
+				{% award_table award %}
+			{% else %}
+				{% for sub in award.get_sub_awards %}
+					<div class="sub_award_table"><p class="sub_award_heading">{{ sub.name }}</p>{% award_table sub %}</div>
+				{% endfor %}
+				<br>
+			{% endif %}
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+{% endblock %}
+
+{% block secondarycontent %}
+	<h3>Awards</h3>
+	<div class="content">
+		<ul class="linklist">
+			{% for award in awards %}
+			<li {% if forloop.first %}class="first"{% endif %}>
+				<a href="/awards/#award_{{forloop.counter}}">
+					{{ award.name }}
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

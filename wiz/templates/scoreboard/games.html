@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block extratitle %}
+Game History
+{% endblock %}
+
+{% block extrascript %}
+<script>
+  $(document).ready(function(){
+	{% for game in games.object_list %}
+    $("#game_header_{{forloop.counter}}").click(function () {
+      $("#game_table_{{forloop.counter}}").toggle();
+    });
+	{% endfor %}
+  });
+
+</script>
+{% endblock %}
+
+{% block content %}
+{% load game_table %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if games.has_previous %}
+            <a href="/games/{{ games.previous_page_number }}/"><< previous</a>
+        {% else %}
+        	<< previous
+        {% endif %}
+
+        <span class="current">
+            Page {{ games.number }} of {{ games.paginator.num_pages }}
+        </span>
+
+        {% if games.has_next %}
+            <a href="/games/{{ games.next_page_number }}/">next >></a>
+        {% else %}
+        	next >>
+        {% endif %}
+    </span>
+</div>
+
+{% for game in games.object_list %}
+<br>
+<div class="post">
+	<div class="content">
+		<div class="header" id="game_header_{{forloop.counter}}">
+			<h3>Game #{{ game.id }} ({{ game.date }})</h3>
+		</div>
+		<div id="game_table_{{forloop.counter}}" style="display: none;">
+			<table class="main_table" >
+				<thead>
+					<tr>
+						<th>#</th>
+						<th width=100>Name</th>
+						<th>Points</th>
+						<th>Star</th>
+						<th>Rating</th>
+					</tr>
+				</thead>
+				{% game_table game %}
+			</table>
+		</div>
+	</div>
+</div>
+	
+{% endfor %}
+{% endblock %}
