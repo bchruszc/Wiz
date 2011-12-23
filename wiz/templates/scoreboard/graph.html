@@ -5,10 +5,10 @@ Graphs
 {% endblock %}
 
 {% block extrascript %}
-<script type="text/javascript" src="/rook_media/scoreboard/js/swfobject.js"></script>
-<script type="text/javascript" src="/rook_media/scoreboard/js/accessibleUISlider.jQuery.js"></script>
-<script type="text/javascript" src="/rook_media/scoreboard/js/ui/ui.slider.js"></script>
-<link rel="stylesheet" type="text/css" href="/rook_media/scoreboard/css/jquery-ui-slider-additions.css"></script>
+<script type="text/javascript" src="/media/scoreboard/js/swfobject.js"></script>
+<script type="text/javascript" src="/media/scoreboard/js/accessibleUISlider.jQuery.js"></script>
+<script type="text/javascript" src="/media/scoreboard/js/ui/ui.slider.js"></script>
+<link rel="stylesheet" type="text/css" href="/media/scoreboard/css/jquery-ui-slider-additions.css"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	// Add something here to default select the right things
@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 	swfobject.embedSWF(
-	  "/rook_media/scoreboard/swf/open-flash-chart.swf", "my_chart", "685", "300",
+	  "/media/scoreboard/swf/open-flash-chart.swf", "my_chart", "685", "300",
 	  "9.0.0", "expressInstall.swf",
 	  {"data-file":"/graph/data/{{ graph_type }}/{{ start_date }}/{{ end_date }}"}
 	  );
