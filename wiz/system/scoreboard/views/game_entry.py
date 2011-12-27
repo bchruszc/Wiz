@@ -1,12 +1,11 @@
 from datetime import datetime
+from django.core.context_processors import csrf
 from django.forms.formsets import formset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from system.scoreboard.models import Game
-from system.scoreboard.models import GameForm
-from system.scoreboard.models import PlayedInGame
-from system.scoreboard.models import PlayedInGameForm
+from system.scoreboard.models import Game, GameForm, PlayedInGame, \
+    PlayedInGameForm
 
 def entry(request):
     PIG_formset = formset_factory(PlayedInGameForm, extra=7, max_num=7)
