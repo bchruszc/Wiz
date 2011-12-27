@@ -20,10 +20,11 @@ def game_table(game):
         if rat_delta > 0:
             rat_text = "+" + rat_text
         row['rating_change'] = rat_text
-        if pig.called_and_won:
-            row['star'] = '*'
-        else:
-            row['star'] = ''
+        # Not relevant without a star
+        #if pig.called_and_won:
+        #    row['star'] = '*'
+        #else:
+        #    row['star'] = ''
             
         player_rows.append(row)
     
