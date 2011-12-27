@@ -14,6 +14,6 @@ def players(request, player_id):
            'player':p,
            'players':players,
            'recent_games':recent_games,
-           'player_range':range(3,8),
-           'rank_range':range(1,8),
+           'player_range':range(3,9),
+           'rank_range':range(1,9),
         }))
