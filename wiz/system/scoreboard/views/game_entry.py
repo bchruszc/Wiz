@@ -83,7 +83,8 @@ def entry(request):
         return render_to_response('scoreboard/entry.html', RequestContext(request, {
                 'menu_group':"entry",
                 'pig_formset':pig_fs,
-                'game_form':game_form
+                'game_form':game_form,
+                'csrf_token':csrf(request),
             }))
 
 def pig_sorter(x, y):
@@ -98,5 +99,6 @@ def entry_failure(pig_fs, game_form, request, errors=[]):
         'errors':errors,
         'pig_formset':pig_fs,
         'game_form':game_form,
+        'csrf_token':csrf(request),
     }))
     

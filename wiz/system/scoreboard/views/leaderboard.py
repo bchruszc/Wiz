@@ -11,7 +11,8 @@ def leaderboard(request):
     player_infos.append(['4 Players', '4', get_leaders(4)])
     player_infos.append(['5 Players', '5', get_leaders(5)])
     player_infos.append(['6 Players', '6', get_leaders(6)])
-    #player_infos.append(['7 Players', '7', get_leaders(7)])
+    player_infos.append(['7 Players', '7', get_leaders(7)])
+    player_infos.append(['8 Players', '8', get_leaders(8)])
     
     recent_winners = []
     for game in Game.objects.order_by('-date')[:10]: #@UndefinedVariable
