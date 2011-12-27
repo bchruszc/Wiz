@@ -15,8 +15,8 @@ class RatingManager:
         add_date = 0
         labels = []
         normal_values = []
-        mer_rating = 1200
-        mer = Player.objects.get(id=12)
+        #mer_rating = 1200
+        #mer = Player.objects.get(id=12)
         for p in players:
             graphs[p] = [] 
         while date <= end_date:
@@ -33,7 +33,8 @@ class RatingManager:
             pigs = PlayedInGame.objects.filter(game__date=date)
             for pig in pigs:
                 ratings_this_date[pig.player] = pig.rating
-            
+
+            '''            
             if pigs.count() > 0:
                 randint = random.randint(1, 7)
                 if randint == 1:
@@ -45,7 +46,7 @@ class RatingManager:
                 
                 if ratings_this_date[mer]:
                     mer_rating = ratings_this_date[mer]
-            
+           '''         
             # Append to the graphs
             for p in players:
                 graphs[p].append(ratings_this_date[p])     

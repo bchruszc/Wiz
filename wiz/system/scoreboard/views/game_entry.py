@@ -8,7 +8,7 @@ from system.scoreboard.models import Game, GameForm, PlayedInGame, \
     PlayedInGameForm
 
 def entry(request):
-    PIG_formset = formset_factory(PlayedInGameForm, extra=7, max_num=7)
+    PIG_formset = formset_factory(PlayedInGameForm, extra=8, max_num=8)
 
     if request.method == 'POST':
         pig_fs = PIG_formset(request.POST, request.FILES)
