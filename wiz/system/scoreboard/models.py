@@ -1,5 +1,5 @@
 from django.db import models
-from django.forms.models import ModelForm
+from django.forms.models import ModelForm, ModelChoiceField
 from datetime import timedelta
 import random
 
@@ -300,7 +300,7 @@ class PlayedInGame(models.Model):
         return str(self.player) + ' played in ' + str(self.game)
     
 class PlayedInGameForm(ModelForm):
-    player = forms.ModelChoiceField(queryset=Player.objects.order_by('first_name'))
+    player = ModelChoiceField(queryset=Player.objects.order_by('first_name'))
 
     #game_date=forms.DateField()
     class Meta:
