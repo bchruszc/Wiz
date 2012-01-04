@@ -300,6 +300,8 @@ class PlayedInGame(models.Model):
         return str(self.player) + ' played in ' + str(self.game)
     
 class PlayedInGameForm(ModelForm):
+    player = forms.ModelChoiceField(queryset=Player.objects.order_by('first_name'))
+
     #game_date=forms.DateField()
     class Meta:
         model = PlayedInGame
