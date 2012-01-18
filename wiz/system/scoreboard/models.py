@@ -388,8 +388,8 @@ class AwardFactory:
             ORDER BY 2 DESC
             """)
         for row in cursor.fetchall():
-            pig = PlayedInGame.objects.get(player=row[0], total_points_manual=row[1])
-            a.add_player(pig.player, pig.total_points_manual, pig.game)
+            pigs = PlayedInGame.objects.filter(player=row[0], total_points_manual=row[1])
+            a.add_player(pigs[0].player, pigs[0].total_points_manual, pigs[0].game)
         return a
 
     def get_highest_rating_award(self):
